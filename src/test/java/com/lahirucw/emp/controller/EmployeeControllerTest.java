@@ -94,7 +94,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "ADMIN", roles = {"USER", "ADMIN"}) 
+    @WithMockUser(roles = {"USER"})
     void testGetAllEmployees() throws Exception {
         List<Employee> employees = Arrays.asList(employee1, employee2);
         when(employeeService.getAllEmployees()).thenReturn(employees);
@@ -112,7 +112,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "ADMIN", roles = {"USER", "ADMIN"}) 
+    @WithMockUser(roles = {"USER"})
     void testGetEmployeeById_Found() throws Exception {
         when(employeeService.getEmployeeById(1L)).thenReturn(Optional.of(employee1));
         mockMvc.perform(get("/api/employees/{id}", 1L))
@@ -125,7 +125,7 @@ public class EmployeeControllerTest {
     }
 
     @Test
-    @WithMockUser(username = "ADMIN", roles = {"USER", "ADMIN"}) 
+    @WithMockUser(roles = {"USER"})
     void testGetEmployeeById_NotFound() throws Exception {
 
         when(employeeService.getEmployeeById(3L)).thenReturn(Optional.empty());
@@ -152,8 +152,8 @@ public class EmployeeControllerTest {
         when(employeeService.createEmployee(any(Employee.class))).thenReturn(savedEmployee);
 
         mockMvc.perform(post("/api/employees")
-                       .contentType(MediaType.APPLICATION_JSON)
-                       .content(objectMapper.writeValueAsString(createEmployeeDTO)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(createEmployeeDTO)))
                .andExpect(status().isCreated())
                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                .andExpect(jsonPath("$.id").value(3L))
@@ -184,8 +184,8 @@ public class EmployeeControllerTest {
         when(employeeService.updateEmployee(eq(employeeId), any(Employee.class))).thenReturn(updatedEmployeeEntity);
 
         mockMvc.perform(put("/api/employees/{id}", employeeId)
-                       .contentType(MediaType.APPLICATION_JSON)
-                       .content(objectMapper.writeValueAsString(updateEmployeeDTO)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(updateEmployeeDTO)))
                .andExpect(status().isOk()) // Expect HTTP 200 OK
                .andExpect(content().contentType(MediaType.APPLICATION_JSON))
                .andExpect(jsonPath("$.id").value(employeeId))
@@ -202,8 +202,8 @@ public class EmployeeControllerTest {
         when(employeeService.getEmployeeById(employeeId)).thenReturn(Optional.empty());
 
         mockMvc.perform(put("/api/employees/{id}", employeeId)
-                       .contentType(MediaType.APPLICATION_JSON)
-                       .content(objectMapper.writeValueAsString(updateEmployeeDTO)))
+                .contentType(MediaType.APPLICATION_JSON)
+                .content(objectMapper.writeValueAsString(updateEmployeeDTO)))
                .andExpect(status().isNotFound());
 
         verify(employeeService, times(1)).getEmployeeById(employeeId);
