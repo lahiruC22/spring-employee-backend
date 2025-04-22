@@ -21,7 +21,7 @@ This project is a robust and secure RESTful API built with Spring Boot for manag
 
 * Java 21 or higher
 * Maven 3.6 or higher
-* An IDE like IntelliJ IDEA or Eclipse
+* An IDE like IntelliJ IDEA or Eclipse, or a Cloud IDE like Firebase Studio/Github Codespaces
 * A database (Neon serverless PostgreSQL db)
 
 ### Running the Application
