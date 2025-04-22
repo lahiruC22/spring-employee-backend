@@ -81,18 +81,18 @@ The application follows a standard layered architecture:
 ### Security Components
 
 * **`SecurityConfig`**: Configures Spring Security, disabling CSRF, setting session management to stateless, defining public and protected endpoints, and integrating the JWT filter.
-* **`UserService` / `UserDetailsService`**: Service responsible for loading user details (username, password, roles) from the database during the authentication process. You will likely have an implementation of Spring Security's `UserDetailsService`. **(Requires Implementation)**
-* **`UserDetailsImpl`**: A custom implementation of Spring Security's `UserDetails` interface. It wraps your `User` entity and provides the necessary methods for Spring Security to manage user details (username, password, authorities/roles). **(Requires Implementation)**
-* **`JwtUtils`**: A utility class responsible for generating JWT tokens during login and validating incoming JWT tokens from client requests. **(Requires Implementation)**
-* **`PasswordEncoder`**: An interface used for encoding user passwords before storing them in the database and verifying passwords during login. You should configure a bean for a strong password encoder like `BCryptPasswordEncoder`. **(Requires Configuration/Implementation of Bean)**
-* **`AuthenticationManager`**: A core Spring Security component used in the `AuthController` to perform the actual authentication process (verifying username/password). **(Requires Configuration)**
-* **`AuthEntryPointJwt`**: Handles authentication errors for unauthorized access to protected resources. **(Requires Implementation)**
-* **`AuthTokenFilter`**: A custom filter that intercepts incoming requests, extracts the JWT from the `Authorization` header, validates it, and sets the authenticated user in Spring Security's `SecurityContext`. **(Requires Implementation)**
+* **`UserService` / `UserDetailsService`**: Service responsible for loading user details (username, password, roles) from the database during the authentication process **(Underdevelopment)**
+* **`UserDetailsImpl`**: A custom implementation of Spring Security's `UserDetails` interface that wraps `User` entity and provides the necessary methods for Spring Security to manage user details (username, password, authorities/roles). **(Underdevelopment)**
+* **`JwtUtils`**: A utility class responsible for generating JWT tokens during login and validating incoming JWT tokens from client requests. **(Underdevelopment)**
+* **`PasswordEncoder`**: An interface used for encoding user passwords before storing them in the database and verifying passwords during login. You should configure a bean for a strong password encoder like `BCryptPasswordEncoder`. **(Underdevelopment)**
+* **`AuthenticationManager`**: A core Spring Security component used in the `AuthController` to perform the actual authentication process (verifying username/password). **(Underdevelopment)**
+* **`AuthEntryPointJwt`**: Handles authentication errors for unauthorized access to protected resources. **(Underdevelopment)**
+* **`AuthTokenFilter`**: A custom filter that intercepts incoming requests, extracts the JWT from the `Authorization` header, validates it, and sets the authenticated user in Spring Security's `SecurityContext`. **(Underdevelopment)**
 
 ### Authentication Endpoints (`AuthController`)
 
-* **`POST /api/auth/register`**: Allows new users to register. Requires a request body containing username, email, password, and optionally roles. **(Requires Implementation of Logic)**
-* **`POST /api/auth/login`**: Allows registered users to log in. Requires a request body containing username/email and password. Returns a JWT upon successful authentication. **(Requires Implementation of Logic)**
+* **`POST /api/auth/register`**: Allows new users to register. Requires a request body containing username, email, password, and optionally roles. **(Underdevelopment)**
+* **`POST /api/auth/login`**: Allows registered users to log in. Requires a request body containing username/email and password. Returns a JWT upon successful authentication. **(Underdevelopment)**
 
 ### API Endpoints (`EmployeeController`)
 
