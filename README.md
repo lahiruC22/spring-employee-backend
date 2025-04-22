@@ -115,7 +115,7 @@ The application follows a standard layered architecture:
 * Hibernate
 * JWT (e.g., `jjwt`)
 * Springdoc OpenAPI (Swagger UI)
-* Databasea (PostgreSQL)
+* Database (PostgreSQL)
 * Maven
 
 ## License
